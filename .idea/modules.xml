@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ApiRest_Java.iml" filepath="$PROJECT_DIR$/.idea/ApiRest_Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/orcamento.iml" filepath="$PROJECT_DIR$/orcamento.iml" />
     </modules>
   </component>
 </project>

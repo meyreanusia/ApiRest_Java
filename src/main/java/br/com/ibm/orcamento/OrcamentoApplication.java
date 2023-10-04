@@ -8,8 +8,6 @@ public class OrcamentoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrcamentoApplication.class, args);
-		System.out.println("Teste de bruno");
-		System.out.println("Teste do github");
 	}
 
 }
