@@ -1,9 +1,9 @@
 package br.com.ibm.orcamento.rest.controller.exceptions;
 
-import br.edu.ifs.academico.service.exceptions.BusinessRuleException;
-import br.edu.ifs.academico.service.exceptions.ConstraintException;
-import br.edu.ifs.academico.service.exceptions.DataIntegrityException;
-import br.edu.ifs.academico.service.exceptions.ObjectNotFoundException;
+import br.com.ibm.orcamento.service.exceptions.BusinessRuleException;
+import br.com.ibm.orcamento.service.exceptions.ConstraintException;
+import br.com.ibm.orcamento.service.exceptions.DataIntegrityException;
+import br.com.ibm.orcamento.service.exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
