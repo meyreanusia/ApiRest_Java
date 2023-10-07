@@ -2,7 +2,7 @@
 
 construção de uma API REST com Java e SpringBoot.
 
-3Projeto de tópicos especiais; 
+Projeto de tópicos especiais; 
 
 Alunos:
 - Meyre França
