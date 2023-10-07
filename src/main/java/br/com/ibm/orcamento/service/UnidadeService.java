@@ -4,6 +4,7 @@ import br.com.ibm.orcamento.model.UnidadeModel;
 import br.com.ibm.orcamento.repository.UnidadeRepository;
 import br.com.ibm.orcamento.rest.dto.UnidadeDto;
 import br.com.ibm.orcamento.rest.form.UnidadeForm;
+import br.com.ibm.orcamento.service.exceptions.BusinessRuleException;
 import br.com.ibm.orcamento.service.exceptions.DataIntegrityException;
 import br.com.ibm.orcamento.service.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -39,11 +40,15 @@ public class UnidadeService {
     }
 
     public List<UnidadeDto> ObterTodos(){
-        List<UnidadeModel> unidadeList = unidadeRepository.findAll();
+        try {
+            List<UnidadeModel> unidadeList = unidadeRepository.findAll();
 
-        return unidadeList.stream()
-                .map(unidade -> modelMapper.map(unidade, UnidadeDto.class))
-                .collect(Collectors.toList());
+            return unidadeList.stream()
+                    .map(unidade -> modelMapper.map(unidade, UnidadeDto.class))
+                    .collect(Collectors.toList());
+        } catch (BusinessRuleException e) {
+            throw new BusinessRuleException("Não é possível consultar as Unidades!");
+        }
     }
 
     public UnidadeDto SalvarUnidade(UnidadeForm unidadeForm) {
