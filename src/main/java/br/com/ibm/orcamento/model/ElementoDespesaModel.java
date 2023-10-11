@@ -3,6 +3,7 @@ package br.com.ibm.orcamento.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ public class ElementoDespesaModel {
     private int id;
 
     @Column(name = "codigo", nullable = false, unique = true)
+    //@NotNull(message = "O campo 'codigo' não pode ser nulo")
     private int codigo;
 
     @Column(name = "nome", length = 255, nullable = false)
