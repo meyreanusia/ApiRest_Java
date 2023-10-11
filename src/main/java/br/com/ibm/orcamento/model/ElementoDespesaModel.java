@@ -14,7 +14,7 @@ public class ElementoDespesaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "codigo", nullable = false)
+    @Column(name = "codigo", nullable = false, unique = true)
     private int codigo;
 
     @Column(name = "nome", length = 255, nullable = false)

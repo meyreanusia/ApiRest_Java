@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ElementoDespesaDto {
     private int id;
-    private String nome;
     private int codigo;
+    private String nome;
 }

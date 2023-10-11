@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
@@ -13,7 +14,7 @@ public class ElementoDespesaForm {
     @Size(max = 255)
     private String nome;
 
-    @NotEmpty
-    @NotBlank(message = "O Código não pode estar em branco.")
-    private int codigo;
+    @NotNull
+    @NotNull(message = "O campo 'codigo' não pode ser nulo")
+    private Integer codigo;
 }
