@@ -14,7 +14,6 @@ public class ElementoDespesaForm {
     @Size(max = 255)
     private String nome;
 
-    @NotNull
     @NotNull(message = "O campo 'codigo' não pode ser nulo")
-    private Integer codigo;
+    private int codigo;
 }
