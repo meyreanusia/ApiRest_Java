@@ -71,17 +71,19 @@ public class ElementoDespesaService {
             if (elementoDespesaExistente.isPresent()) {
                 ElementoDespesaModel elementoDespesaAtualizado = elementoDespesaExistente.get();
                 elementoDespesaAtualizado.setNome(elementoDespesaForm.getNome());
+                elementoDespesaAtualizado.setCodigo(elementoDespesaForm.getCodigo()); // Adicione esta linha para atualizar o código
                 elementoDespesaAtualizado.setDataAlteracao(LocalDateTime.now());
                 elementoDespesaAtualizado = elementoDespesaRepository.save(elementoDespesaAtualizado);
 
                 return modelMapper.map(elementoDespesaAtualizado, ElementoDespesaDto.class);
-            }else{
+            } else {
                 throw new DataIntegrityException("O Código do Elemento Despesa não existe na base de dados!");
             }
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Elemento Despesa não foi(foram) preenchido(s).");
         }
     }
+
 
     public void RemoverElementoDespesa(int id) {
         try {
