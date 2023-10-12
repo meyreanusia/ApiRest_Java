@@ -1,12 +1,9 @@
 package br.com.ibm.orcamento.service;
 
 import br.com.ibm.orcamento.model.TipoLancamentoModel;
-import br.com.ibm.orcamento.model.UnidadeModel;
 import br.com.ibm.orcamento.repository.TipoLancamentoRepository;
 import br.com.ibm.orcamento.rest.dto.TipoLancamentoDto;
-import br.com.ibm.orcamento.rest.dto.UnidadeDto;
 import br.com.ibm.orcamento.rest.form.TipoLancamentoForm;
-import br.com.ibm.orcamento.rest.form.UnidadeForm;
 import br.com.ibm.orcamento.service.exceptions.BusinessRuleException;
 import br.com.ibm.orcamento.service.exceptions.DataIntegrityException;
 import br.com.ibm.orcamento.service.exceptions.ObjectNotFoundException;

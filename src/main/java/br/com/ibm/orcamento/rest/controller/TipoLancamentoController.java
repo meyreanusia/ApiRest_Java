@@ -1,11 +1,8 @@
 package br.com.ibm.orcamento.rest.controller;
 
 import br.com.ibm.orcamento.rest.dto.TipoLancamentoDto;
-import br.com.ibm.orcamento.rest.dto.UnidadeDto;
 import br.com.ibm.orcamento.rest.form.TipoLancamentoForm;
-import br.com.ibm.orcamento.rest.form.UnidadeForm;
 import br.com.ibm.orcamento.service.TipoLancamentoService;
-import br.com.ibm.orcamento.service.UnidadeService;
 import br.com.ibm.orcamento.service.exceptions.ConstraintException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
