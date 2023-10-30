@@ -3,6 +3,7 @@ package br.com.ibm.orcamento.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public class LancamentoModel {
     private int id;
 
     @Column(name = "lancamentoInvalido", nullable = false)
-    private int lancamentoInvalido;
+    private boolean lancamentoInvalido;
 
     @Column(name = "numeroLancamento")
     private int numeroLancamento;
@@ -24,7 +25,7 @@ public class LancamentoModel {
     private int idTipoLancamento;
 
     @Column(name = "dataLancamento", nullable = false)
-    private Date dataLancamento;
+    private LocalDate dataLancamento;
 
     @Column(name = "idLancamentoPai")
     private Integer idLancamentoPai;
