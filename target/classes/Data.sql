@@ -98,7 +98,7 @@ CREATE TABLE tbTipoTransacao (
 );
 CREATE TABLE tbLancamentos (
   ID int AUTO_INCREMENT(1,1) NOT NULL,
-  LacamentoInvalido bit NOT NULL,
+  LancamentoInvalido bit NOT NULL,
   NumeroLancamento int NULL,
   IDTipoLancamento int NOT NULL,
   DataLancamento date NOT NULL,
@@ -440,6 +440,12 @@ INSERT INTO tbElementoDespesa(codigo,nome,dataCadastro) VALUES (92,'Despesas de 
 INSERT INTO tbElementoDespesa(codigo,nome,dataCadastro) VALUES (93,'Outras Restituições e Indenizações',CURRENT_TIMESTAMP());
 INSERT INTO tbElementoDespesa(codigo,nome,dataCadastro) VALUES (94,'Indenizações e Restituições Trabalhistas ',CURRENT_TIMESTAMP());
 INSERT INTO tbElementoDespesa(codigo,nome,dataCadastro) VALUES (96,'Ressarcimento de Despesas de Pessoal Requisitado',CURRENT_TIMESTAMP());
+
+INSERT INTO tbAcao(codigo,nome,dataCadastro) VALUES (2905,'Teste tabela de Acao',CURRENT_TIMESTAMP());
+
+INSERT INTO tbTipoTransacao(nome,dataCadastro) VALUES ('Teste tabela de Tipo Transacao',CURRENT_TIMESTAMP());
+
+INSERT INTO tbLancamentos values ( 1, 1, 1, 1, '2023-05-05', null, 1, 'testedescricao', 1, 1, 1, 1, 1, 1, 1, 1, 'A', 'contrataod', null, 45.5, 1, '2023-05-05 10:00:00', null, 2055  )
 
 
 
