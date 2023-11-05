@@ -39,8 +39,14 @@ public class LancamentoForm {
     private Integer idSolicitante;
     private Integer idObjetivoEstrategico;
     private int idTipoTransacao;
+
+    @NotEmpty
+    @NotBlank(message = "A 'GED' não pode estar em branco.")
+    @Size(max = 27)
     private String ged;
 
+    @NotEmpty
+    @NotBlank(message = "O 'contratado' não pode estar em branco.")
     @Size(max = 255)
     private String contratado;
 

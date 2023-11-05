@@ -1,13 +1,10 @@
 package br.com.ibm.orcamento.service;
 
 import br.com.ibm.orcamento.model.ConsultaLancamento;
-import br.com.ibm.orcamento.model.GrupoDespesaModel;
 import br.com.ibm.orcamento.model.LancamentoModel;
 import br.com.ibm.orcamento.repository.LancamentoRepository;
-import br.com.ibm.orcamento.rest.dto.GrupoDespesaDto;
 import br.com.ibm.orcamento.rest.dto.LancamentoDto;
 import br.com.ibm.orcamento.rest.form.LancamentoForm;
-import br.com.ibm.orcamento.rest.form.LancamentoUpdateForm;
 import br.com.ibm.orcamento.service.exceptions.BusinessRuleException;
 import br.com.ibm.orcamento.service.exceptions.DataIntegrityException;
 import br.com.ibm.orcamento.service.exceptions.ObjectNotFoundException;
@@ -77,13 +74,14 @@ public class LancamentoService {
         }
     }
 
-    public LancamentoDto AtualizarLancamento(LancamentoUpdateForm lancamentoUpdateForm, int id) {
+    public LancamentoDto AtualizarLancamento(LancamentoForm lancamentoUpdateForm, int id) {
         try {
             Optional<LancamentoModel> lancamentoExistente = lancamentoRepository.findById(id);
 
             if (lancamentoExistente.isPresent()) {
                 LancamentoModel lancamentoAtualizado = lancamentoExistente.get();
-                lancamentoAtualizado = modelMapper.map(lancamentoUpdateForm, LancamentoModel.class);
+                lancamentoAtualizado = CamposAtualizados(lancamentoUpdateForm, lancamentoAtualizado);
+
                 lancamentoAtualizado.setDataAlteracao(LocalDateTime.now());
                 lancamentoAtualizado = lancamentoRepository.save(lancamentoAtualizado);
                 ConsultaLancamento lancamento = lancamentoRepository.findLancamentosPorId(lancamentoAtualizado.getId());
@@ -115,5 +113,30 @@ public class LancamentoService {
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Não é possível excluir um Lançamento!");
         }
+    }
+
+    public LancamentoModel CamposAtualizados(LancamentoForm lancamentoUpdateForm, LancamentoModel lancamentoAtualizado)
+    {
+        if (lancamentoUpdateForm.getNumeroLancamento() > 0) lancamentoAtualizado.setNumeroLancamento(lancamentoUpdateForm.getNumeroLancamento());
+        if (lancamentoUpdateForm.getDescricao() != null) lancamentoAtualizado.setDescricao(lancamentoUpdateForm.getDescricao());
+        if (lancamentoUpdateForm.getIdLancamentoPai() != null) lancamentoAtualizado.setIdLancamentoPai(lancamentoUpdateForm.getIdLancamentoPai());
+        if (lancamentoUpdateForm.getValor() > 0) lancamentoAtualizado.setValor(lancamentoUpdateForm.getValor());
+        if (lancamentoUpdateForm.getIdTipoLancamento() > 0) lancamentoAtualizado.setIdTipoLancamento(lancamentoUpdateForm.getIdTipoLancamento());
+        if (lancamentoUpdateForm.getIdUnidade() > 0) lancamentoAtualizado.setIdUnidade(lancamentoUpdateForm.getIdUnidade());
+        if (lancamentoUpdateForm.getIdUnidadeOrcamentaria() > 0) lancamentoAtualizado.setIdUnidadeOrcamentaria(lancamentoUpdateForm.getIdUnidadeOrcamentaria());
+        if (lancamentoUpdateForm.getIdPrograma() > 0) lancamentoAtualizado.setIdPrograma(lancamentoUpdateForm.getIdPrograma());
+        if (lancamentoUpdateForm.getIdAcao() > 0) lancamentoAtualizado.setIdAcao(lancamentoUpdateForm.getIdAcao());
+        if (lancamentoUpdateForm.getIdFonteRecurso() > 0) lancamentoAtualizado.setIdFonteRecurso(lancamentoUpdateForm.getIdFonteRecurso());
+        if (lancamentoUpdateForm.getIdGrupoDespesa() > 0) lancamentoAtualizado.setIdGrupoDespesa(lancamentoUpdateForm.getIdGrupoDespesa());
+        if (lancamentoUpdateForm.getIdModalidadeAplicacao() > 0) lancamentoAtualizado.setIdModalidadeAplicacao(lancamentoUpdateForm.getIdModalidadeAplicacao());
+        if (lancamentoUpdateForm.getIdElementoDespesa() > 0) lancamentoAtualizado.setIdElementoDespesa(lancamentoUpdateForm.getIdElementoDespesa());
+        if (lancamentoUpdateForm.getIdSolicitante() != null) lancamentoAtualizado.setIdSolicitante(lancamentoUpdateForm.getIdSolicitante());
+        if (lancamentoUpdateForm.getIdObjetivoEstrategico() != null) lancamentoAtualizado.setIdObjetivoEstrategico(lancamentoUpdateForm.getIdObjetivoEstrategico());
+        if (lancamentoUpdateForm.getIdTipoTransacao() > 0) lancamentoAtualizado.setIdTipoTransacao(lancamentoUpdateForm.getIdTipoTransacao());
+        if (lancamentoUpdateForm.getGed() != null) lancamentoAtualizado.setGed(lancamentoUpdateForm.getGed());
+        if (lancamentoUpdateForm.getContratado() != null) lancamentoAtualizado.setContratado(lancamentoUpdateForm.getContratado());
+        if (lancamentoUpdateForm.getAnoOrcamento() > 0) lancamentoAtualizado.setAnoOrcamento(lancamentoUpdateForm.getAnoOrcamento());
+
+        return lancamentoAtualizado;
     }
 }

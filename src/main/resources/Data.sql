@@ -113,7 +113,7 @@ CREATE TABLE tbLancamentos (
   IDModalidadeAplicacao int NOT NULL,
   IDElementoDespesa int NOT NULL,
   IDSolicitante int NULL,
-  GED char(27) NULL,
+  GED varchar(27) NULL,
   Contratado varchar(255) NULL,
   IDObjetivoEstrategico int NULL,
   Valor real NOT NULL,
@@ -444,8 +444,6 @@ INSERT INTO tbElementoDespesa(codigo,nome,dataCadastro) VALUES (96,'Ressarciment
 INSERT INTO tbAcao(codigo,nome,dataCadastro) VALUES (2905,'Teste tabela de Acao',CURRENT_TIMESTAMP());
 
 INSERT INTO tbTipoTransacao(nome,dataCadastro) VALUES ('Teste tabela de Tipo Transacao',CURRENT_TIMESTAMP());
-
-INSERT INTO tbLancamentos values ( 1, 1, 1, 1, '2023-05-05', null, 1, 'testedescricao', 1, 1, 1, 1, 1, 1, 1, 1, 'A', 'contrataod', null, 45.5, 1, '2023-05-05 10:00:00', null, 2055  )
 
 
 
