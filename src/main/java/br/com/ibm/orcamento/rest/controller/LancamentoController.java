@@ -47,7 +47,7 @@ public class LancamentoController {
 
     @ApiOperation(value = "Atualizar um Lançamento pelo id")
     @PutMapping("/{id}")
-    public ResponseEntity<LancamentoDto> update(@RequestBody LancamentoForm lancamentoUpdateForm
+    public ResponseEntity<LancamentoDto> update(@Valid @RequestBody LancamentoForm lancamentoUpdateForm
             , @PathVariable("id") int id, BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());

@@ -42,8 +42,8 @@ public class LancamentoService {
 
     public LancamentoDto ObterPorId(int id) {
         try {
-            ConsultaLancamento consultaLancamento = lancamentoRepository.findLancamentosPorId(id);
-            if (consultaLancamento == null)
+            Optional<ConsultaLancamento> consultaLancamento = lancamentoRepository.findLancamentosPorId(id);
+            if (!consultaLancamento.isPresent())
                 throw new ObjectNotFoundException("Lançamento não encontrado! Código : " + id + ", Tipo: " + LancamentoModel.class.getName());
             return modelMapper.map(consultaLancamento, LancamentoDto.class);
 
@@ -58,7 +58,7 @@ public class LancamentoService {
             lancamentoNovo.setDataCadastro(LocalDateTime.now());
 
             lancamentoNovo = lancamentoRepository.save(lancamentoNovo);
-            ConsultaLancamento lancamento = lancamentoRepository.findLancamentosPorId(lancamentoNovo.getId());
+            Optional<ConsultaLancamento> lancamento = lancamentoRepository.findLancamentosPorId(lancamentoNovo.getId());
 
             return modelMapper.map(lancamento, LancamentoDto.class);
 
@@ -67,8 +67,8 @@ public class LancamentoService {
                 String mensagemDeErro = e.getMessage();
                 // Divide a mensagem pelo ponto e vírgula
                 String[] partes = mensagemDeErro.split(";\\s");
-                String terceiraParte = partes[2];
-                throw new DataIntegrityException(terceiraParte);
+                String erroChaveEstrangeira = partes[2];
+                throw new DataIntegrityException(erroChaveEstrangeira);
             }
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Lançamento não foi(foram) preenchido(s).");
         }
@@ -80,11 +80,10 @@ public class LancamentoService {
 
             if (lancamentoExistente.isPresent()) {
                 LancamentoModel lancamentoAtualizado = lancamentoExistente.get();
-                lancamentoAtualizado = CamposAtualizados(lancamentoUpdateForm, lancamentoAtualizado);
-
+                lancamentoAtualizado = modelMapper.map(lancamentoUpdateForm, LancamentoModel.class);
                 lancamentoAtualizado.setDataAlteracao(LocalDateTime.now());
                 lancamentoAtualizado = lancamentoRepository.save(lancamentoAtualizado);
-                ConsultaLancamento lancamento = lancamentoRepository.findLancamentosPorId(lancamentoAtualizado.getId());
+                Optional<ConsultaLancamento> lancamento = lancamentoRepository.findLancamentosPorId(lancamentoAtualizado.getId());
 
                 return modelMapper.map(lancamento, LancamentoDto.class);
             } else {
@@ -95,8 +94,8 @@ public class LancamentoService {
                 String mensagemDeErro = e.getMessage();
                 // Divide a mensagem pelo ponto e vírgula
                 String[] partes = mensagemDeErro.split(";\\s");
-                String terceiraParte = partes[2];
-                throw new DataIntegrityException(terceiraParte);
+                String erroChaveEstrangeira = partes[2];
+                throw new DataIntegrityException(erroChaveEstrangeira);
             }
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Lançamento não foi(foram) preenchido(s).");
         }
@@ -113,30 +112,5 @@ public class LancamentoService {
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Não é possível excluir um Lançamento!");
         }
-    }
-
-    public LancamentoModel CamposAtualizados(LancamentoForm lancamentoUpdateForm, LancamentoModel lancamentoAtualizado)
-    {
-        if (lancamentoUpdateForm.getNumeroLancamento() > 0) lancamentoAtualizado.setNumeroLancamento(lancamentoUpdateForm.getNumeroLancamento());
-        if (lancamentoUpdateForm.getDescricao() != null) lancamentoAtualizado.setDescricao(lancamentoUpdateForm.getDescricao());
-        if (lancamentoUpdateForm.getIdLancamentoPai() != null) lancamentoAtualizado.setIdLancamentoPai(lancamentoUpdateForm.getIdLancamentoPai());
-        if (lancamentoUpdateForm.getValor() > 0) lancamentoAtualizado.setValor(lancamentoUpdateForm.getValor());
-        if (lancamentoUpdateForm.getIdTipoLancamento() > 0) lancamentoAtualizado.setIdTipoLancamento(lancamentoUpdateForm.getIdTipoLancamento());
-        if (lancamentoUpdateForm.getIdUnidade() > 0) lancamentoAtualizado.setIdUnidade(lancamentoUpdateForm.getIdUnidade());
-        if (lancamentoUpdateForm.getIdUnidadeOrcamentaria() > 0) lancamentoAtualizado.setIdUnidadeOrcamentaria(lancamentoUpdateForm.getIdUnidadeOrcamentaria());
-        if (lancamentoUpdateForm.getIdPrograma() > 0) lancamentoAtualizado.setIdPrograma(lancamentoUpdateForm.getIdPrograma());
-        if (lancamentoUpdateForm.getIdAcao() > 0) lancamentoAtualizado.setIdAcao(lancamentoUpdateForm.getIdAcao());
-        if (lancamentoUpdateForm.getIdFonteRecurso() > 0) lancamentoAtualizado.setIdFonteRecurso(lancamentoUpdateForm.getIdFonteRecurso());
-        if (lancamentoUpdateForm.getIdGrupoDespesa() > 0) lancamentoAtualizado.setIdGrupoDespesa(lancamentoUpdateForm.getIdGrupoDespesa());
-        if (lancamentoUpdateForm.getIdModalidadeAplicacao() > 0) lancamentoAtualizado.setIdModalidadeAplicacao(lancamentoUpdateForm.getIdModalidadeAplicacao());
-        if (lancamentoUpdateForm.getIdElementoDespesa() > 0) lancamentoAtualizado.setIdElementoDespesa(lancamentoUpdateForm.getIdElementoDespesa());
-        if (lancamentoUpdateForm.getIdSolicitante() != null) lancamentoAtualizado.setIdSolicitante(lancamentoUpdateForm.getIdSolicitante());
-        if (lancamentoUpdateForm.getIdObjetivoEstrategico() != null) lancamentoAtualizado.setIdObjetivoEstrategico(lancamentoUpdateForm.getIdObjetivoEstrategico());
-        if (lancamentoUpdateForm.getIdTipoTransacao() > 0) lancamentoAtualizado.setIdTipoTransacao(lancamentoUpdateForm.getIdTipoTransacao());
-        if (lancamentoUpdateForm.getGed() != null) lancamentoAtualizado.setGed(lancamentoUpdateForm.getGed());
-        if (lancamentoUpdateForm.getContratado() != null) lancamentoAtualizado.setContratado(lancamentoUpdateForm.getContratado());
-        if (lancamentoUpdateForm.getAnoOrcamento() > 0) lancamentoAtualizado.setAnoOrcamento(lancamentoUpdateForm.getAnoOrcamento());
-
-        return lancamentoAtualizado;
     }
 }

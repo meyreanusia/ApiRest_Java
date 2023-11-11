@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LancamentoRepository extends JpaRepository<LancamentoModel, Integer> {
 
@@ -85,5 +86,5 @@ public interface LancamentoRepository extends JpaRepository<LancamentoModel, Int
             "JOIN TBMODALIDADEAPLICACAO MA ON L.idModalidadeAplicacao = MA.id\n" +
             "JOIN TBTIPOTRANSACAO TT ON L.idTipoTransacao = TT.id\n" +
             "JOIN TBFONTERECURSO FR ON L.idFonteRecurso = FR.id WHERE L.id = :id", nativeQuery = true)
-    ConsultaLancamento findLancamentosPorId(@Param("id") int id);
+    Optional<ConsultaLancamento> findLancamentosPorId(@Param("id") int id);
 }
