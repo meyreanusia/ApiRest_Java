@@ -445,5 +445,43 @@ INSERT INTO tbAcao(codigo,nome,dataCadastro) VALUES (2905,'Teste tabela de Acao'
 
 INSERT INTO tbTipoTransacao(nome,dataCadastro) VALUES ('Teste tabela de Tipo Transacao',CURRENT_TIMESTAMP());
 
+CREATE VIEW IF NOT EXISTS VW_LANCAMENTOS AS
+SELECT
+    L.id,
+    L.lancamentoInvalido,
+    L.numeroLancamento,
+    L.descricao,
+    L.dataLancamento,
+    L.idLancamentoPai,
+    L.valor,
+    TL.nome as dsTipoLancamento,
+    U.nome AS dsUnidade,
+    UO.nome AS dsUnidadeOrcamentaria,
+    P.nome AS dsPrograma,
+    A.nome AS dsAcao,
+    FR.nome AS dsFonteRecurso,
+    GD.nome AS dsGrupoDespesa,
+    MA.nome AS dsModalidadeAplicacao,
+    ED.nome AS dsElementoDespesa,
+    CASE WHEN S.nome IS NULL THEN 'Não Informado' ELSE S.nome END AS dsSolicitante,
+    CASE WHEN OE.nome IS NULL THEN 'Não Informado' ELSE OE.nome END AS dsObjetivoEstrategico,
+    TT.nome AS dsTipoTransacao,
+    L.GED,
+    L.contratado,
+    L.anoOrcamento
+FROM TBLANCAMENTOS L
+JOIN TBTIPOLANCAMENTO TL ON L.idTipoLancamento = TL.id
+JOIN TBUNIDADE U ON L.idUnidade = U.id
+JOIN TBUNIDADEORCAMENTARIA UO ON L.idUnidadeOrcamentaria = UO.id
+JOIN TBELEMENTODESPESA ED ON L.idElementoDespesa = ED.id
+JOIN TBACAO A ON L.idAcao = A.id
+JOIN TBPROGRAMA P ON L.idPrograma = P.id
+LEFT JOIN TBSOLICITANTE S ON L.idSolicitante = S.id
+LEFT JOIN TBOBJETIVOESTRATEGICO OE ON L.idObjetivoEstrategico = OE.id
+JOIN TBGRUPODESPESA GD ON L.idGrupoDespesa = GD.id
+JOIN TBMODALIDADEAPLICACAO MA ON L.idModalidadeAplicacao = MA.id
+JOIN TBTIPOTRANSACAO TT ON L.idTipoTransacao = TT.id
+JOIN TBFONTERECURSO FR ON L.idFonteRecurso = FR.id;
+
 
 

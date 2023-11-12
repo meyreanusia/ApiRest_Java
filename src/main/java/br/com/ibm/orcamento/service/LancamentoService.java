@@ -45,7 +45,7 @@ public class LancamentoService {
             Optional<ConsultaLancamento> consultaLancamento = lancamentoRepository.findLancamentosPorId(id);
             if (!consultaLancamento.isPresent())
                 throw new ObjectNotFoundException("Lançamento não encontrado! Código : " + id + ", Tipo: " + LancamentoModel.class.getName());
-            return modelMapper.map(consultaLancamento, LancamentoDto.class);
+            return modelMapper.map(consultaLancamento.get(), LancamentoDto.class);
 
         } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException("Lançamento não encontrado! Código : " + id + ", Tipo: " + LancamentoModel.class.getName());
@@ -60,7 +60,7 @@ public class LancamentoService {
             lancamentoNovo = lancamentoRepository.save(lancamentoNovo);
             Optional<ConsultaLancamento> lancamento = lancamentoRepository.findLancamentosPorId(lancamentoNovo.getId());
 
-            return modelMapper.map(lancamento, LancamentoDto.class);
+            return modelMapper.map(lancamento.get(), LancamentoDto.class);
 
         } catch (DataIntegrityViolationException e) {
             if (e.getMessage().contains("FK")) {
@@ -85,7 +85,7 @@ public class LancamentoService {
                 lancamentoAtualizado = lancamentoRepository.save(lancamentoAtualizado);
                 Optional<ConsultaLancamento> lancamento = lancamentoRepository.findLancamentosPorId(lancamentoAtualizado.getId());
 
-                return modelMapper.map(lancamento, LancamentoDto.class);
+                return modelMapper.map(lancamento.get(), LancamentoDto.class);
             } else {
                 throw new DataIntegrityException("O Código do Lançamento não existe na base de dados!");
             }
