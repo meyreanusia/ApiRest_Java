@@ -53,7 +53,6 @@ public class GrupoDespesaService {
     public GrupoDespesaDto SalvarGrupoDespesa(GrupoDespesaForm grupoDespesaForm) {
         try {
             GrupoDespesaModel grupoDespesaNovo = modelMapper.map(grupoDespesaForm, GrupoDespesaModel.class);
-            grupoDespesaNovo.setDataCadastro(LocalDateTime.now());
 
             grupoDespesaNovo = grupoDespesaRepository.save(grupoDespesaNovo);
 
@@ -72,7 +71,6 @@ public class GrupoDespesaService {
                 GrupoDespesaModel grupoDespesaAtualizado = grupoDespesaExistente.get();
                 grupoDespesaAtualizado.setNome(grupoDespesaForm.getNome());
                 grupoDespesaAtualizado.setCodigo(grupoDespesaForm.getCodigo()); // Adicione esta linha para atualizar o código
-                grupoDespesaAtualizado.setDataAlteracao(LocalDateTime.now());
                 grupoDespesaAtualizado = grupoDespesaRepository.save(grupoDespesaAtualizado);
 
                 return modelMapper.map(grupoDespesaAtualizado, GrupoDespesaDto.class);

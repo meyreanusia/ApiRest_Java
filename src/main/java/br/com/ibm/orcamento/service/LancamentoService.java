@@ -55,7 +55,6 @@ public class LancamentoService {
     public LancamentoDto SalvarLancamento(LancamentoForm lancamentoForm) {
         try {
             LancamentoModel lancamentoNovo = modelMapper.map(lancamentoForm, LancamentoModel.class);
-            lancamentoNovo.setDataCadastro(LocalDateTime.now());
 
             lancamentoNovo = lancamentoRepository.save(lancamentoNovo);
             Optional<ConsultaLancamento> lancamento = lancamentoRepository.findLancamentosPorId(lancamentoNovo.getId());
@@ -81,7 +80,6 @@ public class LancamentoService {
             if (lancamentoExistente.isPresent()) {
                 LancamentoModel lancamentoAtualizado = lancamentoExistente.get();
                 lancamentoAtualizado = modelMapper.map(lancamentoUpdateForm, LancamentoModel.class);
-                lancamentoAtualizado.setDataAlteracao(LocalDateTime.now());
                 lancamentoAtualizado = lancamentoRepository.save(lancamentoAtualizado);
                 Optional<ConsultaLancamento> lancamento = lancamentoRepository.findLancamentosPorId(lancamentoAtualizado.getId());
 

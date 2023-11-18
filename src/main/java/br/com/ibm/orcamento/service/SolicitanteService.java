@@ -57,7 +57,6 @@ public class SolicitanteService {
     public SolicitanteDto SalvarSolicitante(SolicitanteForm solicitanteForm) {
         try {
             SolicitanteModel solicitanteNovo = modelMapper.map(solicitanteForm, SolicitanteModel.class);
-            solicitanteNovo.setDataCadastro(LocalDateTime.now());
 
             solicitanteNovo = solicitanteRepository.save(solicitanteNovo);
 
@@ -75,7 +74,6 @@ public class SolicitanteService {
             if (solicitanteExistente.isPresent()) {
                 SolicitanteModel solicitanteAtualizado = solicitanteExistente.get();
                 solicitanteAtualizado.setNome(solicitanteForm.getNome());
-                solicitanteAtualizado.setDataAlteracao(LocalDateTime.now());
                 solicitanteAtualizado = solicitanteRepository.save(solicitanteAtualizado);
 
                 return modelMapper.map(solicitanteAtualizado, SolicitanteDto.class);

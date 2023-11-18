@@ -83,4 +83,18 @@ public class LancamentoModel {
 
     @Column(name = "anoOrcamento", nullable = false)
     private short anoOrcamento;
+
+    //Anotação para anter de persistir um novo registro no banco, preencher a data de cadastro.
+    @PrePersist
+    public void prePersist()
+    {
+        this.setDataCadastro(LocalDateTime.now());
+    }
+
+    //Anotação para anter de atualizar um registro no banco, preencher a data de atualização.
+    @PreUpdate
+    public void preUpdate()
+    {
+        this.setDataAlteracao(LocalDateTime.now());
+    }
 }

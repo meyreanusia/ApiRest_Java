@@ -53,7 +53,6 @@ public class ElementoDespesaService {
     public ElementoDespesaDto SalvarElementoDespesa(ElementoDespesaForm elementoDespesaForm) {
         try {
             ElementoDespesaModel elementoDespesaNovo = modelMapper.map(elementoDespesaForm, ElementoDespesaModel.class);
-            elementoDespesaNovo.setDataCadastro(LocalDateTime.now());
 
             elementoDespesaNovo = elementoDespesaRepository.save(elementoDespesaNovo);
 
@@ -72,7 +71,6 @@ public class ElementoDespesaService {
                 ElementoDespesaModel elementoDespesaAtualizado = elementoDespesaExistente.get();
                 elementoDespesaAtualizado.setNome(elementoDespesaForm.getNome());
                 elementoDespesaAtualizado.setCodigo(elementoDespesaForm.getCodigo()); // Adicione esta linha para atualizar o código
-                elementoDespesaAtualizado.setDataAlteracao(LocalDateTime.now());
                 elementoDespesaAtualizado = elementoDespesaRepository.save(elementoDespesaAtualizado);
 
                 return modelMapper.map(elementoDespesaAtualizado, ElementoDespesaDto.class);

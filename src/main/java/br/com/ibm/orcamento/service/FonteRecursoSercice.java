@@ -51,7 +51,6 @@ public class FonteRecursoSercice {
     public FonteRecursoDto salvarFonteRecurso(FonteRecursoForm fonteRecursoForm) {
         try {
             FonteRecursoModel fonteRecursoNovo = modelMapper.map(fonteRecursoForm, FonteRecursoModel.class);
-            fonteRecursoNovo.setDataCadastro(LocalDateTime.now());
 
             fonteRecursoNovo = fonteRecursoRepository.save(fonteRecursoNovo);
 
@@ -69,7 +68,6 @@ public class FonteRecursoSercice {
             if (fonteRecursoExistente.isPresent()) {
                 FonteRecursoModel fonteRecursoAtualizado = fonteRecursoExistente.get();
                 fonteRecursoAtualizado.setNome(fonteRecursoForm.getNome());
-                fonteRecursoAtualizado.setDataAlteracao(LocalDateTime.now());
                 fonteRecursoAtualizado = fonteRecursoRepository.save(fonteRecursoAtualizado);
 
                 return modelMapper.map(fonteRecursoAtualizado, FonteRecursoDto.class);

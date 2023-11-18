@@ -52,7 +52,6 @@ public class UnidadeOrcamentariaService {
     public UnidadeOrcamentariaDto SalvarUnidadeOrcamentaria(UnidadeOrcamentariaForm unidadeOrcamentariaForm) {
         try {
             UnidadeOrcamentariaModel unidadeOrcamentariaNova = modelMapper.map(unidadeOrcamentariaForm, UnidadeOrcamentariaModel.class);
-            unidadeOrcamentariaNova.setDataCadastro(LocalDateTime.now());
 
             unidadeOrcamentariaNova = unidadeOrcamentariaRepository.save(unidadeOrcamentariaNova);
 
@@ -71,7 +70,6 @@ public class UnidadeOrcamentariaService {
                 UnidadeOrcamentariaModel unidadeOrcamentariaAtualizada = unidadeOrcamentariaExistente.get();
                 unidadeOrcamentariaAtualizada.setNome(unidadeOrcamentariaForm.getNome());
                 unidadeOrcamentariaAtualizada.setCodigo(unidadeOrcamentariaForm.getCodigo()); // Adicione esta linha para atualizar o código
-                unidadeOrcamentariaAtualizada.setDataAlteracao(LocalDateTime.now());
                 unidadeOrcamentariaAtualizada = unidadeOrcamentariaRepository.save(unidadeOrcamentariaAtualizada);
 
                 return modelMapper.map(unidadeOrcamentariaAtualizada, UnidadeOrcamentariaDto.class);

@@ -53,7 +53,6 @@ public class TipoTransacaoService {
     public TipoTransacaoDto SalvarTipoTransacao(TipoTransacaoForm tipoTransacaoForm) {
         try {
             TipoTransacaoModel tipoTransacaoNovo = modelMapper.map(tipoTransacaoForm, TipoTransacaoModel.class);
-            tipoTransacaoNovo.setDataCadastro(LocalDateTime.now());
 
             tipoTransacaoNovo = tipoTransacaoRepository.save(tipoTransacaoNovo);
 
@@ -71,7 +70,6 @@ public class TipoTransacaoService {
             if (tipoTransacaoExistente.isPresent()) {
                 TipoTransacaoModel tipoTransacaoAtualizado = tipoTransacaoExistente.get();
                 tipoTransacaoAtualizado.setNome(tipoTransacaoForm.getNome());
-                tipoTransacaoAtualizado.setDataAlteracao(LocalDateTime.now());
                 tipoTransacaoAtualizado = tipoTransacaoRepository.save(tipoTransacaoAtualizado);
 
                 return modelMapper.map(tipoTransacaoAtualizado, TipoTransacaoDto.class);

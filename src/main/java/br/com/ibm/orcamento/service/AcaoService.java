@@ -49,7 +49,6 @@ public class AcaoService {
     public AcaoDto salvarAcao(AcaoForm acaoForm) {
         try {
             AcaoModel acaolNovo = modelMapper.map(acaoForm, AcaoModel.class);
-            acaolNovo.setDataCadastro(LocalDateTime.now());
 
             acaolNovo = acaoRepository.save(acaolNovo);
 
@@ -68,7 +67,6 @@ public class AcaoService {
             if (acaoExistente.isPresent()) {
                 AcaoModel acaoAtualizado = acaoExistente.get();
                 acaoAtualizado.setNome(acaoForm.getNome());
-                acaoAtualizado.setDataAlteracao(LocalDateTime.now());
                 acaoAtualizado = acaoRepository.save(acaoAtualizado);
 
                 return modelMapper.map(acaoAtualizado, AcaoDto.class);

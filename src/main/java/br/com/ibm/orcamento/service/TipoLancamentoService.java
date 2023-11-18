@@ -52,7 +52,6 @@ public class TipoLancamentoService {
     public TipoLancamentoDto salvarTipoLancamento(TipoLancamentoForm tipoLancamentoForm) {
         try {
             TipoLancamentoModel tipoLancamentoNovo = modelMapper.map(tipoLancamentoForm, TipoLancamentoModel.class);
-            tipoLancamentoNovo.setDataCadastro(LocalDateTime.now());
 
             tipoLancamentoNovo = tipoLancamentoRepository.save(tipoLancamentoNovo);
 
@@ -70,7 +69,6 @@ public class TipoLancamentoService {
             if (tipoLancamentoExistente.isPresent()) {
                 TipoLancamentoModel tipoLancamentoAtualizado = tipoLancamentoExistente.get();
                 tipoLancamentoAtualizado.setNome(tipoLancamentoForm.getNome());
-                tipoLancamentoAtualizado.setDataAlteracao(LocalDateTime.now());
                 tipoLancamentoAtualizado = tipoLancamentoRepository.save(tipoLancamentoAtualizado);
 
                 return modelMapper.map(tipoLancamentoAtualizado, TipoLancamentoDto.class);

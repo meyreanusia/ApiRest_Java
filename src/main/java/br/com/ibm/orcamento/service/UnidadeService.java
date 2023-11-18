@@ -54,7 +54,6 @@ public class UnidadeService {
     public UnidadeDto SalvarUnidade(UnidadeForm unidadeForm) {
         try {
             UnidadeModel unidadeNova = modelMapper.map(unidadeForm, UnidadeModel.class);
-            unidadeNova.setDataCadastro(LocalDateTime.now());
 
             unidadeNova = unidadeRepository.save(unidadeNova);
 
@@ -72,7 +71,6 @@ public class UnidadeService {
             if (unidadeExistente.isPresent()) {
                 UnidadeModel unidadeAtualizada = unidadeExistente.get();
                 unidadeAtualizada.setNome(unidadeForm.getNome());
-                unidadeAtualizada.setDataAlteracao(LocalDateTime.now());
                 unidadeAtualizada = unidadeRepository.save(unidadeAtualizada);
 
                 return modelMapper.map(unidadeAtualizada, UnidadeDto.class);

@@ -56,7 +56,6 @@ public class ProgramaService {
     public ProgramaDto SalvarPrograma(ProgramaForm programaForm) {
         try {
             ProgramaModel programaNovo = modelMapper.map(programaForm, ProgramaModel.class);
-            programaNovo.setDataCadastro(LocalDateTime.now());
 
             programaNovo = programaRepository.save(programaNovo);
 
@@ -75,7 +74,6 @@ public class ProgramaService {
                 ProgramaModel programaAtualizado = programaExistente.get();
                 programaAtualizado.setNome(programaForm.getNome());
                 programaAtualizado.setCodigo(programaForm.getCodigo()); // Adicione esta linha para atualizar o código
-                programaAtualizado.setDataAlteracao(LocalDateTime.now());
                 programaAtualizado = programaRepository.save(programaAtualizado);
 
                 return modelMapper.map(programaAtualizado, ProgramaDto.class);

@@ -52,7 +52,6 @@ public class ModalidadeAplicaoService {
     public ModalidadeAplicaoDto salvarModalidadeAplicao(ModalidadeAplicaoForm modalidadeAplicaoForm) {
         try {
             ModalidadeAplicacaoModel modalidadeAplicacaoModelNovo = modelMapper.map(modalidadeAplicaoForm, ModalidadeAplicacaoModel.class);
-            modalidadeAplicacaoModelNovo.setDataCadastro(LocalDateTime.now());
 
             modalidadeAplicacaoModelNovo = modalidadeAplicacaoRepository.save(modalidadeAplicacaoModelNovo);
 
@@ -70,7 +69,6 @@ public class ModalidadeAplicaoService {
             if (modalidadeAplicacaoModelExistente.isPresent()) {
                 ModalidadeAplicacaoModel modalidadeAplicacaoAtualizado = modalidadeAplicacaoModelExistente.get();
                 modalidadeAplicacaoAtualizado.setNome(modalidadeAplicaoForm.getNome());
-                modalidadeAplicacaoAtualizado.setDataAlteracao(LocalDateTime.now());
                 modalidadeAplicacaoAtualizado = modalidadeAplicacaoRepository.save(modalidadeAplicacaoAtualizado);
 
                 return modelMapper.map(modalidadeAplicacaoAtualizado, ModalidadeAplicaoDto.class);

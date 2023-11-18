@@ -53,7 +53,6 @@ public class ObjetivoEstrategicoService {
     public ObjetivoEstrategicoDto SalvarObjetivoEstrategico(ObjetivoEstrategicoForm objetivoEstrategicoForm) {
         try {
             ObjetivoEstrategicoModel objetivoEstrategicoNovo = modelMapper.map(objetivoEstrategicoForm, ObjetivoEstrategicoModel.class);
-            objetivoEstrategicoNovo.setDataCadastro(LocalDateTime.now());
 
             objetivoEstrategicoNovo = objetivoEstrategicoRepository.save(objetivoEstrategicoNovo);
 
@@ -71,7 +70,6 @@ public class ObjetivoEstrategicoService {
             if (objetivoEstrategicoExistente.isPresent()) {
                 ObjetivoEstrategicoModel objetivoEstrategicoAtualizado = objetivoEstrategicoExistente.get();
                 objetivoEstrategicoAtualizado.setNome(objetivoEstrategicoForm.getNome());
-                objetivoEstrategicoAtualizado.setDataAlteracao(LocalDateTime.now());
                 objetivoEstrategicoAtualizado = objetivoEstrategicoRepository.save(objetivoEstrategicoAtualizado);
 
                 return modelMapper.map(objetivoEstrategicoAtualizado, ObjetivoEstrategicoDto.class);
