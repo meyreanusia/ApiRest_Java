@@ -69,6 +69,7 @@ public class ModalidadeAplicaoService {
             if (modalidadeAplicacaoModelExistente.isPresent()) {
                 ModalidadeAplicacaoModel modalidadeAplicacaoAtualizado = modalidadeAplicacaoModelExistente.get();
                 modalidadeAplicacaoAtualizado.setNome(modalidadeAplicaoForm.getNome());
+                modalidadeAplicacaoAtualizado.setCodigo(modalidadeAplicaoForm.getCodigo());
                 modalidadeAplicacaoAtualizado = modalidadeAplicacaoRepository.save(modalidadeAplicacaoAtualizado);
 
                 return modelMapper.map(modalidadeAplicacaoAtualizado, ModalidadeAplicaoDto.class);

@@ -67,6 +67,7 @@ public class AcaoService {
             if (acaoExistente.isPresent()) {
                 AcaoModel acaoAtualizado = acaoExistente.get();
                 acaoAtualizado.setNome(acaoForm.getNome());
+                acaoAtualizado.setCodigo(acaoForm.getCodigo());
                 acaoAtualizado = acaoRepository.save(acaoAtualizado);
 
                 return modelMapper.map(acaoAtualizado, AcaoDto.class);

@@ -68,6 +68,7 @@ public class FonteRecursoSercice {
             if (fonteRecursoExistente.isPresent()) {
                 FonteRecursoModel fonteRecursoAtualizado = fonteRecursoExistente.get();
                 fonteRecursoAtualizado.setNome(fonteRecursoForm.getNome());
+                fonteRecursoAtualizado.setCodigo(fonteRecursoForm.getCodigo());
                 fonteRecursoAtualizado = fonteRecursoRepository.save(fonteRecursoAtualizado);
 
                 return modelMapper.map(fonteRecursoAtualizado, FonteRecursoDto.class);
