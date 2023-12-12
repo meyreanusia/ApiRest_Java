@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tipotransacao")
+@RequestMapping("/tipoTransacao")
 public class TipoTransacaoController {
     @Autowired
     private TipoTransacaoService tipoTransacaoService;

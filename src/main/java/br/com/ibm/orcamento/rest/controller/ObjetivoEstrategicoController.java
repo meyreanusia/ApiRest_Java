@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/objetivoestrategico")
+@RequestMapping("/objetivoEstrategico")
 public class ObjetivoEstrategicoController {
     @Autowired
     private ObjetivoEstrategicoService objetivoEstrategicoService;

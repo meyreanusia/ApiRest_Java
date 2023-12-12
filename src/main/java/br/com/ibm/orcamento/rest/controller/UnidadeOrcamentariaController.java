@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/unidadeorcamentaria")
+@RequestMapping("/unidadeOrcamentaria")
 public class UnidadeOrcamentariaController {
     @Autowired
     private UnidadeOrcamentariaService unidadeOrcamentariaService;
