@@ -21,7 +21,7 @@ public class LancamentoForm {
 
     @NotNull(message = "Data de Lançamento não pode ser nulo.")
     @FutureOrPresent(message = "Data de Lançamento deve ser data atual ou futura.")
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataLancamento;
 
     private Integer idLancamentoPai;
