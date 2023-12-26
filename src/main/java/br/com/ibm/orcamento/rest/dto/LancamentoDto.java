@@ -10,7 +10,7 @@ public class LancamentoDto {
     private Boolean lancamentoInvalido;
     private int numeroLancamento;
     private String descricao;
-    private Date dataLancamento;
+    private String dataLancamento;
     private int idLancamentoPai;
     private float valor;
     private String dsTipoLancamento;

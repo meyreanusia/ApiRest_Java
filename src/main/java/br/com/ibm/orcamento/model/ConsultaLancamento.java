@@ -8,7 +8,7 @@ public interface ConsultaLancamento {
     Boolean getLancamentoInvalido();
     int getNumeroLancamento();
     String getDescricao();
-    Date getDataLancamento();
+    String getDataLancamento();
     Integer getIdLancamentoPai();
     float getValor();
     String getDsTipoLancamento();
