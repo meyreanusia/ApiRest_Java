@@ -15,8 +15,8 @@ public class LancamentoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "lancamentoInvalido", nullable = false)
-    private boolean lancamentoInvalido;
+    @Column(name = "lancamentoValido", nullable = false)
+    private boolean lancamentoValido;
 
     @Column(name = "numeroLancamento")
     private int numeroLancamento;

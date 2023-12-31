@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 @Data
 public class LancamentoForm {
-    @NotNull(message = "O campo 'lancamentoInvalido' não pode ser nulo.")
-    private boolean lancamentoInvalido;
+    @NotNull(message = "O campo 'lancamentoValido' não pode ser nulo.")
+    private boolean lancamentoValido;
 
     @NotNull(message = "O campo 'numeroLancamento' não pode ser nulo.")
     private int numeroLancamento;

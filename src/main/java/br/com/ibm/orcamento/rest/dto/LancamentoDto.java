@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class LancamentoDto {
     private int id;
-    private Boolean lancamentoInvalido;
+    private Boolean lancamentoValido;
     private int numeroLancamento;
     private String descricao;
     private String dataLancamento;

@@ -5,7 +5,7 @@ import java.util.Date;
 public interface ConsultaLancamento {
     //Interface criada para receber consulta dos lançamentos
     int getId();
-    Boolean getLancamentoInvalido();
+    Boolean getLancamentoValido();
     int getNumeroLancamento();
     String getDescricao();
     String getDataLancamento();

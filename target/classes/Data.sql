@@ -98,7 +98,7 @@ CREATE TABLE tbTipoTransacao (
 );
 CREATE TABLE tbLancamentos (
   ID int AUTO_INCREMENT(1,1) NOT NULL,
-  LancamentoInvalido bit NOT NULL,
+  LancamentoValido bit NOT NULL,
   NumeroLancamento int NULL,
   IDTipoLancamento int NOT NULL,
   DataLancamento date NOT NULL,
@@ -448,7 +448,7 @@ INSERT INTO tbTipoTransacao(nome,dataCadastro) VALUES ('Teste tabela de Tipo Tra
 CREATE VIEW IF NOT EXISTS VW_LANCAMENTOS AS
 SELECT
     L.id,
-    L.lancamentoInvalido,
+    L.lancamentoValido,
     L.numeroLancamento,
     L.descricao,
     L.dataLancamento,
