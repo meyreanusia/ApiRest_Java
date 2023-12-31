@@ -11,7 +11,6 @@ public class LancamentoForm {
     @NotNull(message = "O campo 'lancamentoValido' não pode ser nulo.")
     private boolean lancamentoValido;
 
-    @NotNull(message = "O campo 'numeroLancamento' não pode ser nulo.")
     private int numeroLancamento;
 
     @NotEmpty
@@ -62,13 +61,9 @@ public class LancamentoForm {
     @NotNull(message = "O campo 'idTipoTransacao' não pode ser nulo.")
     private int idTipoTransacao;
 
-    @NotEmpty
-    @NotBlank(message = "A 'GED' não pode estar em branco.")
     @Size(max = 27)
     private String ged;
 
-    @NotEmpty
-    @NotBlank(message = "O 'contratado' não pode estar em branco.")
     @Size(max = 255)
     private String contratado;
 
